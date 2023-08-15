@@ -113,7 +113,7 @@ export class RunTab extends ViewPlugin {
         title,
         init: async function () {
           const options = await udapp.call(name, 'init')
-          if (options) { 
+          if (options) {
             this.options = options
             if (options['fork']) this.fork = options['fork']
           }
@@ -132,7 +132,7 @@ export class RunTab extends ViewPlugin {
     }
 
     // basic injected
-    // if it's the trust wallet provider, we have a specific provider for that, see below
+    //if it's the trust wallet provider, we have a specific provider for that, see below
     if (window && window.ethereum && !(window.ethereum.isTrustWallet || window.ethereum.selectedProvider?.isTrustWallet)) {
       const displayNameInjected = `Injected Provider${(window && window.ethereum && !(window.ethereum.providers && !window.ethereum.selectedProvider)) ?
         window.ethereum.isCoinbaseWallet || window.ethereum.selectedProvider?.isCoinbaseWallet ? ' - Coinbase' :
@@ -144,34 +144,38 @@ export class RunTab extends ViewPlugin {
       await addProvider('injected', 'Injected Provider', true, false)
     }
 
-    if (window && window.trustwallet) {
-      const displayNameInjected = `Injected Provider - TrustWallet`    
-      await addProvider('injected-trustwallet', displayNameInjected, true, false)
-    }
-    
+    // if (window && window.trustwallet) {
+    //   const displayNameInjected = `Injected Provider - TrustWallet`
+    //   await addProvider('injected-trustwallet', displayNameInjected, true, false)
+    // }
+
     // VM
-    const titleVM = 'Execution environment is local to Remix.  Data is only saved to browser memory and will vanish upon reload.'
-    await addProvider('vm-shanghai', 'Remix VM (Shanghai)', false, true, 'shanghai', 'settingsVMShanghaiMode', titleVM)
-    await addProvider('vm-merge', 'Remix VM (Merge)', false, true, 'merge', 'settingsVMMergeMode', titleVM)
-    await addProvider('vm-london', 'Remix VM (London)', false, true, 'london', 'settingsVMLondonMode', titleVM)
-    await addProvider('vm-berlin', 'Remix VM (Berlin)', false, true, 'berlin', 'settingsVMBerlinMode', titleVM)
-    await addProvider('vm-mainnet-fork', 'Remix VM - Mainnet fork', false, true, 'merge', 'settingsVMMainnetMode', titleVM)
-    await addProvider('vm-sepolia-fork', 'Remix VM - Sepolia fork', false, true, 'merge', 'settingsVMSepoliaMode', titleVM)
-    await addProvider('vm-goerli-fork', 'Remix VM - Goerli fork', false, true, 'merge', 'settingsVMGoerliMode', titleVM)
-    await addProvider('vm-custom-fork', 'Remix VM - Custom fork', false, true, '', 'settingsVMCustomMode', titleVM)
+    // const titleVM = 'Execution environment is local to Remix.  Data is only saved to browser memory and will vanish upon reload.'
+    // await addProvider('vm-shanghai', 'Remix VM (Shanghai)', false, true, 'shanghai', 'settingsVMShanghaiMode', titleVM)
+    // await addProvider('vm-merge', 'Remix VM (Merge)', false, true, 'merge', 'settingsVMMergeMode', titleVM)
+    // await addProvider('vm-london', 'Remix VM (London)', false, true, 'london', 'settingsVMLondonMode', titleVM)
+    // await addProvider('vm-berlin', 'Remix VM (Berlin)', false, true, 'berlin', 'settingsVMBerlinMode', titleVM)
+    // await addProvider('vm-mainnet-fork', 'Remix VM - Mainnet fork', false, true, 'merge', 'settingsVMMainnetMode', titleVM)
+    // await addProvider('vm-sepolia-fork', 'Remix VM - Sepolia fork', false, true, 'merge', 'settingsVMSepoliaMode', titleVM)
+    // await addProvider('vm-goerli-fork', 'Remix VM - Goerli fork', false, true, 'merge', 'settingsVMGoerliMode', titleVM)
+    // await addProvider('vm-custom-fork', 'Remix VM - Custom fork', false, true, '', 'settingsVMCustomMode', titleVM)
 
     // wallet connect
-    await addProvider('walletconnect', 'WalletConnect', false, false)
+    // await addProvider('walletconnect', 'WalletConnect', false, false)
+
+    // VM
+    const titleVM = 'Execution environment is local to Thora-IDE.  Data is only saved to browser memory and will vanish upon reload.'
+    await addProvider('vm-merge', 'Javascript VM', false, true, 'merge', 'settingsVMMergeMode', titleVM)
 
     // external provider
-    await addProvider('basic-http-provider', 'Custom - External Http Provider', false, false)
-    await addProvider('hardhat-provider', 'Dev - Hardhat Provider', false, false)
-    await addProvider('ganache-provider', 'Dev - Ganache Provider', false, false)
-    await addProvider('foundry-provider', 'Dev - Foundry Provider', false, false)    
-    
-    // injected provider    
-    await addProvider('injected-optimism-provider', 'L2 - Optimism Provider', true, false)
-    await addProvider('injected-arbitrum-one-provider', 'L2 - Arbitrum One Provider', true, false)
+    // await addProvider('basic-http-provider', 'Custom - External Http Provider', false, false)
+    // await addProvider('hardhat-provider', 'Dev - Hardhat Provider', false, false)
+    // await addProvider('ganache-provider', 'Dev - Ganache Provider', false, false)
+    // await addProvider('foundry-provider', 'Dev - Foundry Provider', false, false)
+
+    // injected provider
+    // await addProvider('injected-optimism-provider', 'L2 - Optimism Provider', true, false)
+    // await addProvider('injected-arbitrum-one-provider', 'L2 - Arbitrum One Provider', true, false)
   }
 
   writeFile (fileName, content) {

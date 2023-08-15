@@ -28,19 +28,20 @@ import { StoragePlugin } from './app/plugins/storage'
 import { Layout } from './app/panels/layout'
 import { NotificationPlugin } from './app/plugins/notification'
 import { Blockchain } from './blockchain/blockchain'
-import { MergeVMProvider, LondonVMProvider, BerlinVMProvider, ShanghaiVMProvider } from './app/providers/vm-provider'
-import { MainnetForkVMProvider } from './app/providers/mainnet-vm-fork-provider'
-import { SepoliaForkVMProvider } from './app/providers/sepolia-vm-fork-provider'
-import { GoerliForkVMProvider } from './app/providers/goerli-vm-fork-provider'
-import { CustomForkVMProvider } from './app/providers/custom-vm-fork-provider'
-import { HardhatProvider } from './app/providers/hardhat-provider'
-import { GanacheProvider } from './app/providers/ganache-provider'
-import { FoundryProvider } from './app/providers/foundry-provider'
-import { ExternalHttpProvider } from './app/providers/external-http-provider'
+import { MergeVMProvider} from './app/providers/vm-provider'
+// import { MergeVMProvider, LondonVMProvider, BerlinVMProvider, ShanghaiVMProvider } from './app/providers/vm-provider'
+// import { MainnetForkVMProvider } from './app/providers/mainnet-vm-fork-provider'
+// import { SepoliaForkVMProvider } from './app/providers/sepolia-vm-fork-provider'
+// import { GoerliForkVMProvider } from './app/providers/goerli-vm-fork-provider'
+// import { CustomForkVMProvider } from './app/providers/custom-vm-fork-provider'
+// import { HardhatProvider } from './app/providers/hardhat-provider'
+// import { GanacheProvider } from './app/providers/ganache-provider'
+// import { FoundryProvider } from './app/providers/foundry-provider'
+// import { ExternalHttpProvider } from './app/providers/external-http-provider'
 import { InjectedProviderDefault } from './app/providers/injected-provider-default'
-import { InjectedProviderTrustWallet } from './app/providers/injected-provider-trustwallet'
-import { Injected0ptimismProvider } from './app/providers/injected-optimism-provider'
-import { InjectedArbitrumOneProvider } from './app/providers/injected-arbitrum-one-provider'
+// import { InjectedProviderTrustWallet } from './app/providers/injected-provider-trustwallet'
+// import { Injected0ptimismProvider } from './app/providers/injected-optimism-provider'
+// import { InjectedArbitrumOneProvider } from './app/providers/injected-arbitrum-one-provider'
 import { FileDecorator } from './app/plugins/file-decorator'
 import { CodeFormat } from './app/plugins/code-format'
 import { SolidityUmlGen } from './app/plugins/solidity-umlgen'
@@ -52,6 +53,7 @@ const remixLib = require('@remix-project/remix-lib')
 
 import { QueryParams } from '@remix-project/remix-lib'
 import { SearchPlugin } from './app/tabs/search'
+
 
 const Storage = remixLib.Storage
 const RemixDProvider = require('./app/files/remixDProvider')
@@ -207,22 +209,25 @@ class AppComponent {
     const networkModule = new NetworkModule(blockchain)
     // ----------------- represent the current selected web3 provider ----
     const web3Provider = new Web3ProviderModule(blockchain)
-    const vmProviderCustomFork = new CustomForkVMProvider(blockchain)
-    const vmProviderMainnetFork = new MainnetForkVMProvider(blockchain)
-    const vmProviderSepoliaFork = new SepoliaForkVMProvider(blockchain)
-    const vmProviderGoerliFork = new GoerliForkVMProvider(blockchain)
-    const vmProviderShanghai = new ShanghaiVMProvider(blockchain)
+
+    // const vmProviderCustomFork = new CustomForkVMProvider(blockchain)
+    // const vmProviderMainnetFork = new MainnetForkVMProvider(blockchain)
+    // const vmProviderSepoliaFork = new SepoliaForkVMProvider(blockchain)
+    // const vmProviderGoerliFork = new GoerliForkVMProvider(blockchain)
+    // const vmProviderShanghai = new ShanghaiVMProvider(blockchain)
     const vmProviderMerge = new MergeVMProvider(blockchain)
-    const vmProviderBerlin = new BerlinVMProvider(blockchain)
-    const vmProviderLondon = new LondonVMProvider(blockchain)
-    const hardhatProvider = new HardhatProvider(blockchain)
-    const ganacheProvider = new GanacheProvider(blockchain)
-    const foundryProvider = new FoundryProvider(blockchain)
-    const externalHttpProvider = new ExternalHttpProvider(blockchain)
-    const trustWalletInjectedProvider = new InjectedProviderTrustWallet()
+    // const vmProviderBerlin = new BerlinVMProvider(blockchain)
+    // const vmProviderLondon = new LondonVMProvider(blockchain)
+    // const hardhatProvider = new HardhatProvider(blockchain)
+    // const ganacheProvider = new GanacheProvider(blockchain)
+    // const foundryProvider = new FoundryProvider(blockchain)
+    // const externalHttpProvider = new ExternalHttpProvider(blockchain)
+
+
+    // const trustWalletInjectedProvider = new InjectedProviderTrustWallet()
     const defaultInjectedProvider = new InjectedProviderDefault
-    const injected0ptimismProvider = new Injected0ptimismProvider()
-    const injectedArbitrumOneProvider = new InjectedArbitrumOneProvider()
+    // const injected0ptimismProvider = new Injected0ptimismProvider()
+    // const injectedArbitrumOneProvider = new InjectedArbitrumOneProvider()
     // ----------------- convert offset to line/column service -----------
     const offsetToLineColumnConverter = new OffsetToLineColumnConverter()
     Registry.getInstance().put({
@@ -282,22 +287,22 @@ class AppComponent {
       fetchAndCompile,
       dGitProvider,
       storagePlugin,
-      vmProviderShanghai,
+      // vmProviderShanghai,
       vmProviderMerge,
-      vmProviderBerlin,
-      vmProviderLondon,
-      vmProviderSepoliaFork,
-      vmProviderGoerliFork,
-      vmProviderMainnetFork,
-      vmProviderCustomFork,
-      hardhatProvider,
-      ganacheProvider,
-      foundryProvider,
-      externalHttpProvider,
+      // vmProviderBerlin,
+      // vmProviderLondon,
+      // vmProviderSepoliaFork,
+      // vmProviderGoerliFork,
+      // vmProviderMainnetFork,
+      // vmProviderCustomFork,
+      // hardhatProvider,
+      // ganacheProvider,
+      // foundryProvider,
+      // externalHttpProvider,
       defaultInjectedProvider,
-      trustWalletInjectedProvider,
-      injected0ptimismProvider,
-      injectedArbitrumOneProvider,
+      // trustWalletInjectedProvider,
+      // injected0ptimismProvider,
+      // injectedArbitrumOneProvider,
       this.walkthroughService,
       search,
       solidityumlgen,
