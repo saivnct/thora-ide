@@ -28,7 +28,9 @@ export class CompileTabLogic {
     this.contentImport = contentImport
     this.event = new EventEmitter()
     this.compiler = new Compiler((url, cb) => api.resolveContentAndSave(url).then((result) => cb(null, result)).catch((error) => cb(error.message)))
-    this.evmVersions = ['default', 'shanghai', 'paris', 'london', 'berlin', 'istanbul', 'petersburg', 'constantinople', 'byzantium', 'spuriousDragon', 'tangerineWhistle', 'homestead']
+    // this.evmVersions = ['default', 'shanghai', 'paris', 'london', 'berlin', 'istanbul', 'petersburg', 'constantinople', 'byzantium', 'spuriousDragon', 'tangerineWhistle', 'homestead']
+    //giangbb: remove shanghai
+    this.evmVersions = ['default', 'paris', 'london', 'berlin', 'istanbul', 'petersburg', 'constantinople', 'byzantium', 'spuriousDragon', 'tangerineWhistle', 'homestead']
   }
 
   init () {
@@ -43,11 +45,13 @@ export class CompileTabLogic {
 
     this.evmVersion = this.api.getCompilerParameters().evmVersion
     if (
-      this.evmVersion === 'undefined' || 
-      this.evmVersion === 'null' || 
-      !this.evmVersion || 
+      this.evmVersion === 'undefined' ||
+      this.evmVersion === 'null' ||
+      !this.evmVersion ||
       !this.evmVersions.includes(this.evmVersion)) {
-        this.evmVersion = null
+        //giangbb: remove shanghai - set default evm to paris
+        // this.evmVersion = null
+        this.evmVersion = 'paris'
     }
     this.api.setCompilerParameters({ evmVersion: this.evmVersion })
     this.compiler.set('evmVersion', this.evmVersion)
@@ -80,7 +84,20 @@ export class CompileTabLogic {
   }
 
   setEvmVersion (newEvmVersion) {
-    this.evmVersion = newEvmVersion
+
+
+    //giangbb: remove shanghai - set default evm to paris
+    // this.evmVersion = null
+    if (
+        newEvmVersion === 'undefined' ||
+        newEvmVersion === 'null' ||
+        !newEvmVersion ||
+        !this.evmVersions.includes(newEvmVersion)) {
+      this.evmVersion = 'paris'
+    }else{
+      this.evmVersion = newEvmVersion
+    }
+    // console.log('set newEvmVersion', this.evmVersion)
     this.api.setCompilerParameters({ evmVersion: this.evmVersion })
     this.compiler.set('evmVersion', this.evmVersion)
   }
