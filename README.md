@@ -2,7 +2,7 @@
   <img src="./apps/remix-ide/src/assets/img/icon.png" alt="Remix Logo" width="200"/>
 </p>
 <h3 align="center">Remix Project</h3>
-    
+
 <div align="center">
 
 
@@ -19,7 +19,7 @@
 
 ## Remix Project
 
-**Remix Project** is a rich toolset including Remix IDE, a comprehensive smart contract development tool. The Remix Project also includes Remix Plugin Engine and Remix Libraries which are low-level tools for wider use.  
+**Remix Project** is a rich toolset including Remix IDE, a comprehensive smart contract development tool. The Remix Project also includes Remix Plugin Engine and Remix Libraries which are low-level tools for wider use.
 
 ## Remix IDE
 **Remix IDE** is used for the entire journey of contract development by users of any knowledge level. It fosters a fast development cycle and has a rich set of plugins with intuitive GUIs. The IDE comes in 2 flavors and a VSCode extension:
@@ -34,7 +34,7 @@
 
 **VSCode extension**, see: [Ethereum-Remix](https://marketplace.visualstudio.com/items?itemName=RemixProject.ethereum-remix)
 
-## Remix libraries 
+## Remix libraries
 Remix libraries are essential for Remix IDE's native plugins. Read more about libraries [here](libs/README.md)
 
 ## Offline Usage
@@ -47,7 +47,7 @@ Note: It contains the latest supported version of Solidity available at the time
 ## Setup
 
 * Install **Yarn** and **Node.js**. See [Guide for NodeJs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and [Yarn install](https://classic.yarnpkg.com/lang/en/docs/install)<br/>
-*Supported versions:*
+  *Supported versions:*
 ```bash
 "engines": {
     "node": "^20.0.0",
@@ -63,14 +63,13 @@ yarn global add nx
 ```bash
 git clone https://github.com/ethereum/remix-project.git
 ```
-* Build `remix-project`:
-```bash
-cd remix-project
-yarn install
-yarn run build:libs // Build remix libs
-nx build
-nx serve
-```
+* Build and Run `remix-project`:
+
+1. Move to project directory: `cd remix-project`
+2. Install dependencies: `yarn install` or simply run `yarn`
+3. Build Remix libraries: `yarn run build:libs`
+4. Build Remix project: `yarn build`
+5. Build and run project server: `yarn serve`. Optionally, run `yarn serve:hot` to enable hot module reload for frontend updates.
 
 Open `http://127.0.0.1:8080` in your browser to load Remix IDE locally.
 
@@ -90,7 +89,7 @@ Production build will be served by default to `http://localhost:8080/` or `http:
 
 ## Docker:
 
-Prerequisites: 
+Prerequisites:
 * Docker (https://docs.docker.com/desktop/)
 * Docker Compose (https://docs.docker.com/compose/install/)
 
@@ -149,27 +148,27 @@ For example, to run unit tests of `remix-analyzer`, use `nx test remix-analyzer`
 
 To run the Selenium tests via Nightwatch:
 
- - Install Selenium for the first time: `yarn run selenium-install`
- - Run a selenium server: `yarn run selenium`
- - Build & Serve Remix: `nx serve`
- - Run all the end-to-end tests:
+- Install Selenium for the first time: `yarn run selenium-install`
+- Run a selenium server: `yarn run selenium`
+- Build & Serve Remix: `yarn serve`
+- Run all the end-to-end tests:
 
-    for Firefox: `yarn run nightwatch_local_firefox`, or 
+  for Firefox: `yarn run nightwatch_local_firefox`, or
 
-    for Google Chrome: `yarn run nightwatch_local_chrome`
- - Run a specific test case instead, use a command like this: 
- 
-		- yarn run nightwatch_local_ballot
-		
-	The package.json file contains a list of all the tests you can run.
-        
+  for Google Chrome: `yarn run nightwatch_local_chrome`
+- Run a specific test case instead, use a command like this:
+
+  	- yarn run nightwatch_local_ballot
+
+  The package.json file contains a list of all the tests you can run.
+
 **NOTE:**
 
 - **The `ballot` tests suite** requires running `ganache-cli` locally.
 
 - **The `remixd` tests suite** requires running `remixd` locally.
 
-- **The `gist` tests suite** requires specifying a GitHub access token in **.env file**. 
+- **The `gist` tests suite** requires specifying a GitHub access token in **.env file**.
 ```
     gist_token = <token> // token should have permission to create a gist
 ```
@@ -182,9 +181,9 @@ There is a script to allow selecting the browser and a specific test to run:
 yarn run select_test
 ```
 
-You need to have 
+You need to have
 
-- selenium running 
+- selenium running
 
 - the IDE running
 
@@ -206,7 +205,7 @@ You should write your tests so they can be executed in groups and not depend on 
 
 To do this you need to:
 
-- Add a group to tag to a test, they are formatted as #group followed by a number: so it becomes #group1, #group220, #group4. Any number will do. You don't have to do it in a specific order. 
+- Add a group to tag to a test, they are formatted as #group followed by a number: so it becomes #group1, #group220, #group4. Any number will do. You don't have to do it in a specific order.
 
 ```
   'Should generate test file #group1': function (browser: NightwatchBrowser) {
@@ -256,7 +255,7 @@ yarn run group_test --test=debugger --group=10 --env=chromeDesktop
 
 ### Run the same (flaky) test across all instances in CircleCI
 
-In CircleCI all tests are divided across instances to run in parallel. 
+In CircleCI all tests are divided across instances to run in parallel.
 You can also run 1 or more tests simultaneously across all instances.
 This way the pipeline can easily be restarted to check if a test is flaky.
 
@@ -267,7 +266,7 @@ For example:
 ```
 
 Now, the group3 of this test will be executed in firefox and chrome 80 times.
-If you mark more groups in other tests they will also be executed. 
+If you mark more groups in other tests they will also be executed.
 
 **CONFIGURATION**
 
